@@ -1,1 +1,9 @@
-<p>earthquake-info-panel works!</p>
+<div *ngIf="earthquake">
+  <h2>{{ title() }}</h2>
+
+  <div class="earthquake-stats">
+    <div>Magnitude: {{ earthquake.properties.mag }}</div>
+    <div>Radius: {{ radius() }}</div>
+    <div>Time: {{ time() }}</div>
+  </div>
+</div>

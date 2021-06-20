@@ -2,10 +2,10 @@
   <ul>
     <li
       *ngFor="let earthquake of earthquakes"
-      title="{{ earthquake.properties.place }}"
+      title="{{ title(earthquake) }}"
       (click)="onEarthquakeSelected(earthquake)"
     >
-      {{ earthquake.properties.place }}
+      {{ title(earthquake) }}
     </li>
   </ul>
 </nav>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Earthquake } from '../app.component';
+import { Earthquake } from '../earthquake';
 
 @Component({
   selector: 'app-menu',
@@ -21,6 +21,12 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  title(earthquake: Earthquake): string | void {
+    if(earthquake){
+      return earthquake.properties.place.split("km").pop()?.trim()
+    }
   }
 
 }

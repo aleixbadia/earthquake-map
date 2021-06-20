@@ -5,5 +5,8 @@
     (earthquakeSelected)="handleEarthquakeChange($event)"
   ></app-menu>
 
-  <app-earthquake-info id="earthquake-info"></app-earthquake-info>
+  <app-earthquake-info
+    id="earthquake-info"
+    [earthquake]="currentEarthquake"
+  ></app-earthquake-info>
 </div>

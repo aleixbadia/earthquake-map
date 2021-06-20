@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Earthquake } from '../app.component';
+import { Earthquake } from '../earthquake';
 
 @Component({
   selector: 'app-earthquake-info',

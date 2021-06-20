@@ -1,0 +1,11 @@
+h2 {
+  margin: 0.5em;
+}
+
+.earthquake-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  font-size: 1.3em;
+}
+

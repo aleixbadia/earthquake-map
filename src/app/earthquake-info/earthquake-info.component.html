@@ -1,1 +1,10 @@
-<p>earthquake-info works!</p>
+<app-earthquake-info-panel
+  *ngIf="earthquake"
+  [earthquake]="earthquake"
+  id="earthquake-info-panel"
+></app-earthquake-info-panel>
+
+<app-earthquake-info-map
+  id="leaflet-map"
+  [earthquake]="earthquake"
+></app-earthquake-info-map>
