@@ -1,11 +1,11 @@
-#earthquake-info{
+#earthquake-info {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-#earthquake-info-panel{
-  flex: 1;
+#earthquake-info-panel {
+  height: 15%;
   width: 100%;
 
   display: flex;
@@ -18,8 +18,6 @@
   border-bottom: solid 2px darkgray;
 }
 
-#leaflet-map{
-  flex: 5;
-  height: 100%;
+#leaflet-map {
   width: 100%;
 }

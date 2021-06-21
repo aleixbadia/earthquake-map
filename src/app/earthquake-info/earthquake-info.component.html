@@ -1,5 +1,4 @@
 <app-earthquake-info-panel
-  *ngIf="earthquake"
   [earthquake]="earthquake"
   id="earthquake-info-panel"
 ></app-earthquake-info-panel>
@@ -7,4 +6,5 @@
 <app-earthquake-info-map
   id="leaflet-map"
   [earthquake]="earthquake"
+  [allEarthquakes]="allEarthquakes"
 ></app-earthquake-info-map>

@@ -9,6 +9,7 @@ import { Earthquake } from '../earthquake';
 export class EarthquakeInfoComponent implements OnInit {
 
   @Input() earthquake: Earthquake | null = null;
+  @Input() allEarthquakes: Earthquake[] | null = null;
 
   constructor() { }
 

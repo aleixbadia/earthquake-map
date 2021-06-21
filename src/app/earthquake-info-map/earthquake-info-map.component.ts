@@ -1,11 +1,5 @@
-import {
-  Component,
-  Input,
-  AfterViewInit,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, AfterViewInit, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 import { Earthquake } from '../earthquake';
 import { LeafletMap } from './leaflet-map';
 
@@ -14,32 +8,34 @@ import { LeafletMap } from './leaflet-map';
   templateUrl: './earthquake-info-map.component.html',
   styleUrls: ['./earthquake-info-map.component.css'],
 })
-export class EarthquakeInfoMapComponent
-  implements OnInit, AfterViewInit, OnChanges
-{
-  @Input() earthquake: Earthquake | null = null;
+export class EarthquakeInfoMapComponent implements OnInit, AfterViewInit {
+  _earthquake: Earthquake | null = null;
+  _allEarthquakes: Earthquake[] | null = null;
+
+  @Input() set earthquake(value: Earthquake | null) {
+    this._earthquake = value;
+    if (this.map && this._earthquake) {
+      const name = this._earthquake.properties.place;
+      const lat = this._earthquake.geometry.coordinates[1];
+      const lng = this._earthquake.geometry.coordinates[0];
+      this.map.update(lat, lng, name);
+    }
+  }
+
+  @Input() set allEarthquakes(value: Earthquake[] | null) {
+    this._allEarthquakes = value;
+    if (this.map && this._allEarthquakes) {
+      this.map.load(this._allEarthquakes);
+    }
+  }
+
   map: LeafletMap | null = null;
 
-  constructor() {}
+  constructor(private _dataService: DataService) {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.map = new LeafletMap('map');
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!this.map) {
-      return;
-    }
-
-    if (changes.earthquake.currentValue) {
-      console.log(`changes.earthquake.currentValue`, changes.earthquake.currentValue)
-      const currentValue = changes.earthquake.currentValue;
-      const name = currentValue.properties.place;
-      const lat = currentValue.geometry.coordinates[1];
-      const lng = currentValue.geometry.coordinates[0];
-      this.map.update(lat, lng, name);
-    }
+    this.map = new LeafletMap('map', this._dataService);
   }
 }

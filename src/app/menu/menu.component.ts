@@ -16,7 +16,6 @@ export class MenuComponent implements OnInit {
   constructor() { }
 
   onEarthquakeSelected(earthquake: Earthquake): void{
-    console.log(`onEarthquakeSelected`, earthquake)
     this.earthquakeSelected.emit(earthquake)
   }
 

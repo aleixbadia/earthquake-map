@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import {DataEarthquake, Earthquake} from './earthquake'
+import { Earthquake } from './earthquake';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -12,25 +12,15 @@ export class AppComponent implements OnInit {
   earthquakes: Earthquake[] = [];
   currentEarthquake: Earthquake | null = null;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private _dataService: DataService) {}
 
   ngOnInit(): void {
-    this.getEarthquakes();
+    this._dataService
+      .getEarthquakes()
+      .subscribe((data) => (this.earthquakes = data.features));
   }
 
   handleEarthquakeChange(earthquake: Earthquake): void {
-    console.log(`handleEarthquakeChange`, earthquake);
     this.currentEarthquake = earthquake;
-  }
-
-  getEarthquakes() {
-    this.httpClient
-      .get<DataEarthquake>(
-        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
-      )
-      .subscribe((response) => {
-        console.log(response);
-        this.earthquakes = response.features;
-      });
   }
 }
