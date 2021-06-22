@@ -24,3 +24,6 @@ $ cd earthquake-map
 $ npm install
 $ npm start
 ```
+
+## Deploy link
+https://red-cross-map.web.app/
